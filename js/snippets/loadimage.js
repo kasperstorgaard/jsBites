@@ -8,7 +8,9 @@
     
     return deferred.promise(); //promise is invoked here instead
 }
-jQuery.when(loadImage(jQuery('#some-image'))).then(
-    function success() { /*dostuff*/ },
-    function fail(){ /*dostuff*/ }
-);
+var $fakeImage = jQuery('#fake-image');
+loadImage($fakeImage)
+    .then(function success() { console.log('success');  },
+          function fail() { console.log('fail'); });
+
+$fakeImage.attr('src', 'http://fakeimg.pl/350x200/?text=World&font=lobster')

@@ -1,13 +1,36 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="~/css/reveal/theme/default.css" id="theme">
-    <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="css/lib/zenburn.css">
+    <meta charset="utf-8" />
+    <title>Console</title>
+    <meta id="meta" name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" type="image/png">
+    <link rel="stylesheet" href="~/css/plugins/highlight/vs.css">
+    <link rel="stylesheet" href="~/css/Site.css">
 </head>
 <body>
-    @RenderBody()
+    <div class="areas">
+        <div class="content-area">
+            <div class="script-area">
+                <h2 class="code-headline"><span id="script-text"></span></h2>
+                <pre>
+                    <code class="javascript" id="js-container"></code>
+                </pre>
+            </div>
+            <div class="html-area" >
+                <div id="html-container">@RenderBody()</div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/lib/bluebird.min.js"></script>
+    <script src="~/js/lib/lodash.js"></script>
+    <script src="~/js/lib/jquery-1.11.2.min.js"></script>
+    <script src="~/js/plugin/highlight/highlight.pack.js"></script>
+
+    <script>
+            hljs.initHighlightingOnLoad();
+    </script>
+
+    <script src="~/js/console/loadSnippet.js"></script>
 </body>
 </html>

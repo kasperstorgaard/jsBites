@@ -1,8 +1,10 @@
 ﻿(function () {
     var JS_SNIPPET_PATH = 'js/snippets',
         HTML_SNIPPET_PATH = 'views/snippets',
+        NAME_END_STR = '&',
         jsInsertContainer,
-        htmlInsertContainer;
+        htmlInsertContainer,
+        jsScriptHeader;
 
     document.addEventListener("DOMContentLoaded", function () {
         var hash = getHash();
@@ -11,12 +13,9 @@
             return;
         }
 
-        var split = hash.split('|'),
-            splitLen = split.length,
-            dependencies = split.slice(0, splitLen - 1),
-            name = split.slice(splitLen - 1, splitLen)[0];
+        var name = (hash.split(NAME_END_STR))[0];
 
-        loadScript(name, dependencies);
+        loadScript(name);
         loadHtml(name);
     });
 
@@ -25,21 +24,13 @@
         return hash && hash.length > 1 ? hash.substr(1) : null;
     }
 
-    function loadScript(scriptName, dependencies) {
+    function loadScript(scriptName) {
         var url = '/' + JS_SNIPPET_PATH + '/' + scriptName + '.js';
 
-        if (dependencies) {
-            var dependenciesLoaded = window._console.loadScript(dependencies);
+        setScriptHeader(scriptName);
 
-            Promise.all(_.compact(dependenciesLoaded))
-                .then(function() {
-                    return loadFile(url);
-                })
-                .then(insertScript);
-        } else {
-            loadFile(url)
-                .then(insertHtml);
-        }
+        loadFile(url)
+            .then(insertScript);
     }
 
     function loadHtml(scriptName) {
@@ -63,11 +54,17 @@
             xhr.open("GET", url, true);
             xhr.send();
         });
+    } 
+
+    function setScriptHeader(text) {
+        jsScriptHeader = jsScriptHeader || document.getElementById('script-text');
+        jsScriptHeader.innerHTML = text;
     }
 
     function insertScript(script) {
         jsInsertContainer = jsInsertContainer || document.getElementById('js-container');
         jsInsertContainer.innerHTML = script;
+
         window.hljs.highlightBlock(jsInsertContainer);
     }
 
