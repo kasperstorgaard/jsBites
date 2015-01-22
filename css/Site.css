@@ -43,3 +43,14 @@
     border-bottom: 1px solid rgba(0,0,0,0.1);
     padding-bottom: 5px;
 }
+
+.btn-run {
+    font-size: 80%;
+    float: right;
+    padding: 0 3px;
+    background:rgba(0,0,0,0.05);
+}
+
+.btn-run:hover {
+    cursor: pointer;
+}

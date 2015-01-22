@@ -58,7 +58,7 @@
 
     function setScriptHeader(text) {
         jsScriptHeader = jsScriptHeader || document.getElementById('script-text');
-        jsScriptHeader.innerHTML = text;
+        jsScriptHeader.innerHTML = text.replace('_', ' ');
     }
 
     function insertScript(script) {
