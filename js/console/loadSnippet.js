@@ -54,11 +54,11 @@
             xhr.open("GET", url, true);
             xhr.send();
         });
-    } 
+    }
 
     function setScriptHeader(text) {
         jsScriptHeader = jsScriptHeader || document.getElementById('script-text');
-        jsScriptHeader.innerHTML = text.replace('_', ' ');
+        jsScriptHeader.innerHTML = text.replace(new RegExp('_', 'g'), ' ');
     }
 
     function insertScript(script) {
