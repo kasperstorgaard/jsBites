@@ -1,0 +1,16 @@
+<section>
+  <h2>Advanced Promises</h2>
+</section>
+<section>
+  <h3>Tips and tricks 1</h3>
+  <p class="fragment">you can attach multiple "then" to a single promise like so</p>
+  <pre><code>
+    var somePromise = new Promise(function(resolve, reject){resolve()});
+
+    somePromise.then(doStuff);
+    somePromise.then(doOtherStuff);
+    somePromise.then(dontKnowWhatToDo);
+  </code></pre>
+  <p class="fragment">these will resolve at the same time.</p>
+  <p class="fragment">this is mostly useful when u are passing a promise object around and conditionally add "then" to it.</p>
+</section>

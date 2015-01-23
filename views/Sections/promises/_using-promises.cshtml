@@ -1,0 +1,55 @@
+<section>
+  <h2>Using promises</h2>
+</section>
+<section>
+  <h3>creating a promise</h3>
+  <p class="fragment">The most common Promise implemtation creates a promise like this:</p>
+  <pre class="fragment"><code>
+    var somePromise = new Promise(function(resolve, reject){
+      //do some stuff here and either "resolve" or "reject"
+    });
+  </code></pre>
+  <p class="fragment">You need to wrap the part of your code that should be able to resolve or reject in this new Promise and assign it to a variable/object or return it</p>
+</section>
+<section>
+  <h3>.then</h3>
+  <p class="fragment">the "then" method is the most common way of assigning a function to when the promise is resolved</p>
+  <p class="fragment">A common thing to forget is that it can also be supplied with an error handling function:</p>
+  <pre class="fragment"><code>
+    var somePromise = new Promise(function(resolve, reject){ resolve(); });
+    somePromise.then(function success(){
+      //do stuff
+    }, function error(){
+      //do stuff
+    });
+  </code></pre>
+</section>
+<section>
+  <h3>.then (continued)</h3>
+  <p class="fragment">"then" is also commonly used in chains of async calls which needs to be called after each other</p>
+  <p class="fragment">the result of each call is then used as arguments for the next call.</p>
+  <a class="fragment" href="/snippet#promise_chains" target="_blank">Example - promise chains</a>
+  <p class="fragment">The chaining also applies if there is an error, in which case the error handler of each chain will get called all the way to the last "then"</p>
+</section>
+<section>
+  <h3>.catch</h3>
+  <p class="fragment">catch is a shortcut for .then(null, function(){}), and is very expressive when you need to handle an error at some point in the chain.</p>
+  <p class="fragment">Often this will be at the end of the chain, so any errors encountered in any promises are handled here</p>
+  <p class="fragment">You can also use this right after a request that is likely to fail to provide a recovery hook</p>
+</section>
+<section>
+  <h3>.done</h3>
+  <p class="fragment">"done" gets called when a promise resolves (the async call was a success)</p>
+  <p class="fragment">"done" can't be chained, and does not handle errors, so use "then" unless you know what you want to use it for</p>
+</section>
+<section>
+  <h3>Promise.all</h3>
+  <p class="fragment">"all" is a more specialized method, which returns a new promise that resolves when all the promises specified are resolved</p>
+  <pre class="fragment"><code>
+    Promise.all([promise1, promise2, promise3])
+      .then(function(valueArray){
+        //do stuff with the values
+      })
+  </code></pre>
+  <p class="fragment">If any of the promises reject, the "all" promise will reject aswell </p>
+</section>

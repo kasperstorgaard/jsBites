@@ -16,7 +16,7 @@
         { src: 'js/lib/classList.js', condition: function () { return !document.body.classList; } },
         { src: 'js/plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
         { src: 'js/plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
-        { src: 'js/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+        { src: 'js/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
         { src: 'js/plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
         { src: 'js/plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
     ]

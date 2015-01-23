@@ -1,17 +1,29 @@
 <section>
+  <h2>Introduction to Promises</h2>
+</section>
+<section>
   <h3>What is a promise?</h3>
-  <p class="fragment">In its purest form, a promise is the result of an async operation</p>
-  <p class="fragment">This means that we can write async code as part of our normal, synchronous flow, which we return as a promise.</p>
+  <p class="fragment">A promise represents the result of an async operation</p>
+  <p class="fragment">When the async operation is finished, the state of the promise will change to reflect the result</p>
   <a class="fragment" href="/snippet#loadjson" target="_blank">Example - loadjson (es6 syntax)</a>
 </section>
 <section>
   <h3>How is this so different from what we already do?</h3>
-  <p class="fragment">Promises do <u>not</u> give us something that could not already be accomplished in js.
-  </p><p class="fragment">What it does is give us a tool for writing async code in a safer, more readable way.
+  <p class="fragment">Promises do <u>not</u> give us something we couldn't already do in js.
+  </p><p class="fragment">In fact, for simple cases it looks almost the same as callbacks.
   </p>
   <a class="fragment" href="/snippet#loadjson_no_promises" target="_blank">Example - loadjson - no promises</a>
-  <p class="fragment">Not that much different? - We'll get to that in a second</p>
 </section>
 <section>
-
+  <h3>So why use them?</h3>
+  <p class="fragment">Promises have a number of advantages:
+  <br /><small>(which we will explore soon)</small>
+  </p>
+  <ul>
+    <li class="fragment">A syntax which makes sync code look and read almost as sync code</li>
+    <li class="fragment">Can handle complex chains of async and sync operations</li>
+    <li class="fragment">Can be passed around and attached to objects</li>
+    <li class="fragment">Handles exceptions inside promises, and has great tools for handling/recovering from them</li>
+  </ul>
 </section>
+
