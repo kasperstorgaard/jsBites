@@ -1,3 +1,65 @@
 ﻿<section>
     <h2>jQuery</h2>
 </section>
+<section>
+  <h3>jQuery.Deferred !== Promise</h3>
+  <p class="fragment">jQuery's Deferred's are not "proper" promises => they do not follow the Promise A+ spec.</p>
+  <p class="fragment">They behave like promises in a lot of ways, but they have some differences:</p>
+  <ul>
+    <li class="fragment">Creating a promise</li>
+    <li class="fragment">Method names</li>
+    <li class="fragment">Error handling</li>
+  </ul>
+</section>
+<section>
+  <h3>creating a promise in jQuery</h3>
+  <p class="fragment">to create a new promise in jQuery, you do this:</p>
+  <pre class="fragment"><code>
+    var deferred = new jQuery.Deferred();
+    someAsyncFunction(function(value){
+      deferred.resolve(value)
+    });
+    return deferred.promise();
+  </code></pre>
+</section>
+<section>
+  <h3>Method names</h3>
+  <table style="margin: auto">
+    <thead>
+      <tr>
+        <th>Promise A+</th>
+        <th></th>
+        <th>jQuery Deferred</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>.then()</td>
+        <td></td>
+        <td>.then()</td>
+      </tr>
+      <tr>
+        <td>.catch()</td>
+        <td></td>
+        <td>.fail()</td>
+      </tr>
+      <tr>
+        <td>.done()</td>
+        <td></td>
+        <td>.done()</td>
+      </tr>
+      <tr>
+        <td>Promise.all()</td>
+        <td></td>
+        <td>$.when()</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section>
+  <h3>Error handling</h3>
+  <p class="fragment">This is perhaps the biggest difference between jQuery.Deferred and Promise A+</p>
+  <p class="fragment">When an operation fails in a jQuery Deferred, the promise will not catch the exception</p>
+  <p class="fragment">This means that you will have to handle error yourself in a try/catch block, or be sure that your code cannot fail</p>
+  <a class="fragment" href="snippet#jqueryerrorhandling" >Example - jQuery Error handling</a>
+</section>

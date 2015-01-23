@@ -12,8 +12,24 @@
   <p class="fragment">You need to wrap the part of your code that should be able to resolve or reject in this new Promise and assign it to a variable/object or return it</p>
 </section>
 <section>
+  <h3>promise characteristics</h3>
+  <p class="fragment">A Promise can have 3 states:</p>
+  <ul>
+    <li class="fragment">Pending: The initial state of a promise.</li>
+    <li class="fragment">Fulfilled: The state of a promise representing a successful operation.</li>
+    <li class="fragment">Rejected: The state of a promise representing a failed operation.</li>
+  </ul>
+</section>
+<section>
+  <h3>promise characteristics (continued)</h3>
+  <p class="fragment">When a promise is either fulfilled or rejected, it is immutable => cannot be changed.</p>
+  <p class="fragment">That also means that the handlers attached to a promise will only ever get called <span class="fragment grow">once</span></p>
+  <a class="fragment" href="/snippet#singleexecution" target="_blank">Example - only executed once</a>
+</section>
+<section>
   <h3>.then</h3>
-  <p class="fragment">the "then" method is the most common way of assigning a function to when the promise is resolved</p>
+  <p class="fragment">the "then" method is the most important method of a promise</p>
+  <p class="fragment">As I have shown you, it is the most common way of assigning a handler to when the promise is resolved</p>
   <p class="fragment">A common thing to forget is that it can also be supplied with an error handling function:</p>
   <pre class="fragment"><code>
     var somePromise = new Promise(function(resolve, reject){ resolve(); });
@@ -45,6 +61,17 @@
 <section>
   <h3>Promise.all</h3>
   <p class="fragment">"all" is a more specialized method, which returns a new promise that resolves when all the promises specified are resolved</p>
+  <pre class="fragment"><code>
+    Promise.all([promise1, promise2, promise3])
+      .then(function(valueArray){
+        //do stuff with the values
+      })
+  </code></pre>
+  <p class="fragment">If any of the promises reject, the "all" promise will reject aswell </p>
+</section>
+<section>
+  <h3>Utilities</h3>
+  <p class="fragment">Different promise libraries have implemented some utilities like "spread", </p>
   <pre class="fragment"><code>
     Promise.all([promise1, promise2, promise3])
       .then(function(valueArray){

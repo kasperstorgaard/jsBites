@@ -24,19 +24,26 @@
         return hash && hash.length > 1 ? hash.substr(1) : null;
     }
 
-    function loadScript(scriptName) {
-        var url = '/' + JS_SNIPPET_PATH + '/' + scriptName + '.js';
+    function loadScript(fileName) {
+        var url = '/' + JS_SNIPPET_PATH + '/' + fileName + '.js';
 
-        setScriptHeader(scriptName);
+        setScriptHeader(fileName);
 
         loadFile(url)
-            .then(insertScript);
+            .then(insertScript)
+            .catch(function(error){
+                console.log('file: "'+url+'" failed to load');
+            })
     }
 
-    function loadHtml(scriptName) {
-        var url = '/' + HTML_SNIPPET_PATH + '/' + scriptName + '.html';
+    function loadHtml(fileName) {
+        var url = '/' + HTML_SNIPPET_PATH + '/' + fileName + '.html';
 
-        loadFile(url).then(insertHtml);
+        loadFile(url)
+            .then(insertHtml)
+            .catch(function(error){
+                console.log('file: "'+url+'" failed to load');
+            });
     }
 
     function loadFile(url) {
